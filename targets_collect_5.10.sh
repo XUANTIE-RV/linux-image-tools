@@ -10,8 +10,11 @@ IMAGE_DEFAULT_C906fdv=${ROOT_PATH}"/../tmp-glibc/deploy/images/riscv64-k5.10xt-k
 IMAGE_DEBUG_C906fdv=${ROOT_PATH}"/../tmp-glibc/deploy/images/riscv64-k5.10xt-kcdebug@c906fdv-tcxt"
 IMAGE_DEFAULT_C908v=${ROOT_PATH}"/../tmp-glibc/deploy/images/riscv64-k5.10xt-kcdefault@c908v-tcxt"
 IMAGE_DEBUG_C908v=${ROOT_PATH}"/../tmp-glibc/deploy/images/riscv64-k5.10xt-kcdebug@c908v-tcxt"
-OPENTEE_BRINGUP_64k5_PATH=${ROOT_PATH}"/../tmp-glibc/work/riscv64_k5.10xt_kcdebug_tcxt-oe-linux/trusted-firmware-a/2.3-r0/git/build/qemu_thead/debug"
+OPENTEE_BRINGUP_64k5_PATH=${ROOT_PATH}"/../tmp-glibc/work/riscv64_k5.10xt_kcdebug_tcxt-oe-linux/trusted-firmware-a/2.3-r0/git/build/qemu_xuantie/debug"
 OPENTEE_TEEOS_64k5_PATH=${ROOT_PATH}"/../tmp-glibc/work/riscv64_k5.10xt_kcdebug_tcxt-oe-linux/trusted-firmware-a/2.3-r0/recipe-sysroot/usr/lib/optee-os/out/riscv/core"
+
+OPENTEE_BRINGUP_C908V_64k5_PATH=${ROOT_PATH}"/../tmp-glibc/work/riscv64_k5.10xt_kcdebug@c908v_tcxt-oe-linux/trusted-firmware-a/2.3-r0/git/build/qemu_xuantie/debug"
+OPENTEE_TEEOS_C908V_64k5_PATH=${ROOT_PATH}"/../tmp-glibc/work/riscv64_k5.10xt_kcdebug@c908v_tcxt-oe-linux/trusted-firmware-a/2.3-r0/recipe-sysroot/usr/lib/optee-os/out/riscv/core"
 
 IMAGE_PATH_64k5_DEBUG_ROOTFS=${ROOT_PATH}"/../tmp-glibc/deploy/images/riscv64-k5.10xt-kcdebug-tcxt"
 IMAGE_PATH_64k5_DEBUG=${ROOT_PATH}"/../tmp-glibc/deploy/images/riscv64-k5.10xt-kcdebug-tcxt"
@@ -39,99 +42,194 @@ do_copy_opensbi(){
         exit -1
     fi
 }
-do_copy_opentee(){
-    echo -e "\033[32m === copy opentee image ==\033[0m"
+do_copy_optee(){
+    echo -e "\033[32m === copy optee image ==\033[0m"
     set -x
-    mkdir -p archived/images/opentee/kernel5.10-rv64-fpga/bringup
-    mkdir -p archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    mkdir -p archived/images/optee/kernel5.10-rv64-fpga/bringup
+    mkdir -p archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/bl1.bin archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/bl1.bin archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/bl2.bin archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/bl2.bin archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/bl31.bin archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/bl31.bin archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/fip.bin archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/fip.bin archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
             echo "failed"
             exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/nt_fw_content.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/nt_fw_content.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/nt_fw_key.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/nt_fw_key.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/soc_fw_content.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/soc_fw_content.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/soc_fw_key.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/soc_fw_key.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/tb_fw.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/tb_fw.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/tos_fw_content.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/tos_fw_content.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/tos_fw_key.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/tos_fw_key.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_BRINGUP_64k5_PATH}/trusted_key.crt archived/images/opentee/kernel5.10-rv64-qemu/bringup
+    cp ${OPENTEE_BRINGUP_64k5_PATH}/trusted_key.crt archived/images/optee/kernel5.10-rv64-qemu/bringup
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    mkdir -p archived/images/opentee/kernel5.10-rv64-qemu/tee-os
+    mkdir -p archived/images/optee/kernel5.10-rv64-qemu/tee-os
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_TEEOS_64k5_PATH}/tee-header_v2.bin archived/images/opentee/kernel5.10-rv64-qemu/tee-os/bl32.bin
+    cp ${OPENTEE_TEEOS_64k5_PATH}/tee-header_v2.bin archived/images/optee/kernel5.10-rv64-qemu/tee-os/bl32.bin
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_TEEOS_64k5_PATH}/tee-pager_v2.bin archived/images/opentee/kernel5.10-rv64-qemu/tee-os/bl32_extra1.bin
+    cp ${OPENTEE_TEEOS_64k5_PATH}/tee-pager_v2.bin archived/images/optee/kernel5.10-rv64-qemu/tee-os/bl32_extra1.bin
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${OPENTEE_TEEOS_64k5_PATH}/tee-pageable_v2.bin archived/images/opentee/kernel5.10-rv64-qemu/tee-os/bl32_extra2.bin
+    cp ${OPENTEE_TEEOS_64k5_PATH}/tee-pageable_v2.bin archived/images/optee/kernel5.10-rv64-qemu/tee-os/bl32_extra2.bin
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${ROOT_PATH}/../tmp-glibc/work/riscv64_k5.10xt_kcdebug_tcxt-oe-linux/optee-os-fpga/3.15-r0/build/out/riscv/core/tee-pager_v2.bin archived/images/opentee/kernel5.10-rv64-fpga/bringup
-    cp ${ROOT_PATH}/../tmp-glibc/work/riscv64_k5.10xt_kcdebug_tcxt-oe-linux/trusted-firmware-a-fpga/2.3-r0/git/build/xiaohui/debug/bl31.bin archived/images/opentee/kernel5.10-rv64-fpga/bringup
+    cp ${ROOT_PATH}/../tmp-glibc/work/riscv64_k5.10xt_kcdebug_tcxt-oe-linux/optee-os-fpga/3.15-r0/build/out/riscv/core/tee-pager_v2.bin archived/images/optee/kernel5.10-rv64-fpga/bringup
+    cp ${ROOT_PATH}/../tmp-glibc/work/riscv64_k5.10xt_kcdebug_tcxt-oe-linux/trusted-firmware-a-fpga/2.3-r0/git/build/xiaohui/debug/bl31.bin archived/images/optee/kernel5.10-rv64-fpga/bringup
     set +x
 }
+
+do_copy_c908_optee(){
+    echo -e "\033[32m === copy optee image ==\033[0m"
+    set -x
+    mkdir -p archived/images/optee/kernel5.10@c908v-rv64-fpga/bringup
+    mkdir -p archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/bl1.bin archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/bl2.bin archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/bl31.bin archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/fip.bin archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+            echo "failed"
+            exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/nt_fw_content.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/nt_fw_key.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/soc_fw_content.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/soc_fw_key.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/tb_fw.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/tos_fw_content.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/tos_fw_key.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_BRINGUP_C908V_64k5_PATH}/trusted_key.crt archived/images/optee/kernel5.10@c908v-rv64-qemu/bringup
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    mkdir -p archived/images/optee/kernel5.10@c908v-rv64-qemu/tee-os
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_TEEOS_C908V_64k5_PATH}/tee-header_v2.bin archived/images/optee/kernel5.10@c908v-rv64-qemu/tee-os/bl32.bin
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_TEEOS_C908V_64k5_PATH}/tee-pager_v2.bin archived/images/optee/kernel5.10@c908v-rv64-qemu/tee-os/bl32_extra1.bin
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${OPENTEE_TEEOS_C908V_64k5_PATH}/tee-pageable_v2.bin archived/images/optee/kernel5.10@c908v-rv64-qemu/tee-os/bl32_extra2.bin
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        exit -1
+    fi
+    cp ${ROOT_PATH}/../tmp-glibc/work/riscv64_k5.10xt_kcdebug@c908v_tcxt-oe-linux/optee-os-fpga/3.15-r0/build/out/riscv/core/tee-pager_v2.bin archived/images/optee/kernel5.10@c908v-rv64-fpga/bringup
+    cp ${ROOT_PATH}/../tmp-glibc/work/riscv64_k5.10xt_kcdebug@c908v_tcxt-oe-linux/trusted-firmware-a-fpga/2.3-r0/git/build/xiaohui/debug/bl31.bin archived/images/optee/kernel5.10@c908v-rv64-fpga/bringup
+    set +x
+}
+
 do_copy_kernel(){
     echo -e "\033[32m === copy kernel5.10 image ==\033[0m"
     set -x
@@ -234,22 +332,17 @@ do_copy_rootfs(){
         echo "failed"
         exit -1
     fi
-    cp ${IMAGE_PATH_64k5_DEBUG_ROOTFS}/${IMAGE}-riscv64-k5.10xt-kcdebug-tcxt.ext4 archived/images/rootfs/rootfs.xuantie-image-rv64-lite-5.10.ext4
+    cp ${IMAGE_PATH_64k5_DEBUG_ROOTFS}/${IMAGE}-riscv64-k5.10xt-kcdebug-tcxt.ext4 archived/images/rootfs/rootfs.xuantie-image-rv64-5.10-lite.ext4
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ${IMAGE_PATH_64k5_DEBUG_ROOTFS}/${IMAGE}-riscv64-k5.10xt-kcdebug-tcxt.cpio.gz archived/images/rootfs/rootfs.xuantie-image-rv64-lite-5.10.cpio.gz
+    cp ${IMAGE_PATH_64k5_DEBUG_ROOTFS}/${IMAGE}-riscv64-k5.10xt-kcdebug-tcxt.cpio.gz archived/images/rootfs/rootfs.xuantie-image-rv64-5.10-lite.cpio.gz
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
     cp -r ${ROOT_PATH}"/../../../meta-xuantie/recipes-bsp/hw-c9xx/files/fpga"  archived/
-    if [ $? -ne 0 ]; then
-        echo "failed"
-        exit -1
-    fi
-    cp -r ${ROOT_PATH}"/../../../meta-xuantie/recipes-bsp/hw-c9xx/files/qemu"  archived/
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
@@ -313,15 +406,12 @@ do_tarball(){
         echo "failed"
         exit -1
     fi
-    cd ./tmp/sdk_tarball/  && tar -zcvf xuantie-linux-${version}-optee_5.10.tar.gz archived/fpga/update_dts_cpu_optee.sh  archived/fpga/script/get_images_optee.sh archived/fpga/run_fpga_optee.sh archived/fpga/gdbinit/zsb_rv64_optee.gdbinit archived/fpga/dts/zsb_rv64_optee* archived/images/opentee && rm -rf archived/fpga/update_dts_cpu_optee.sh  archived/fpga/script/get_images_optee.sh archived/images/opentee && tar -zcvf xuantie-linux-${version}_5.10.tar.gz archived && cd -
+    cd ./tmp/sdk_tarball/ && tar -zcvf xuantie-linux-${version}_5.10.tar.gz archived && cd -
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
     fi
-    cp ./tmp/sdk_tarball/xuantie-linux-${version}_5.10.tar.gz ./tarball/ && cp ./tmp/sdk_tarball/xuantie-linux-${version}-optee_5.10.tar.gz ./tarball/
-    if [ "$#" -ge 2 ] && [ -d "$2" ]; then
-        cp $2/xuantie-linux-${version}*.tar.gz ./tarball/
-    fi
+    cp ./tmp/sdk_tarball/xuantie-linux-${version}_5.10.tar.gz ./tarball/
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
@@ -354,8 +444,9 @@ do_work(){
         echo -e "\033[36m copy ${MACHINE} images\033[0m"
         do_copy_opensbi
         do_copy_rootfs
-        do_copy_opentee
-        do_copy_uboot
+        #do_copy_optee
+        #do_copy_uboot
+        #do_copy_c908_optee
         do_copy_kernel
         do_copy_zsb
         do_tarball $cmd_args
