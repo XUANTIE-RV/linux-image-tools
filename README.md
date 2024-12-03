@@ -1,28 +1,28 @@
-1、5.10/6.6 images collect
+# 目录说明
 
-cd xuantie-build/xuantie
+```
+├── README.md
+├── scripts      // 存放编译脚本
+|   ├── benchmark_compile_5.10.sh
+│   ├── benchmark_compile_6.6.sh
+│   ├── build-images_5.10.sh
+│   └── build-images_6.6.sh 
+├── tarball       // 镜像目录，存放编译好的镜像文件
+├── targets_collect_6.6.sh   // 6.6镜像打包脚本
+└── targets_collect_5.10.sh  // 5.10镜像打包脚本
+```
 
-git clone git@gitee.com:xuantie-yocto/linux-image-tools.git -b 1.0
+# 镜像打包脚本
 
-cd linux-image-tools
+“targets_collect*.sh” 脚本可以用来将编译好的镜像打包。使用说明：
 
-./targets_collect_6.6.sh
+1.  将linux-image-tools拷贝到编译完成的 xuantie-build/xuantie 文件夹下
+2.  运行脚本：
+    6.6：./targets_collect_6.6.sh v1.0.6
+    5.10：./targets_collect_5.10.sh v1.0.6
 
-./targets_collect_5.10.sh
+# tarball 镜像目录
 
-2、Software package compile
+存放打包好的镜像文件
 
-cd xuantie-build/xuantie
-
-./benchmark_compile_5.10.sh
-
-./benchmark_compile_6.6.sh
-
-3、5.10/6.6 images compile
-
-cd xuantie-build/xuantie
-
-./build-images_5.10.sh
-
-./build-images_6.6.sh
 
