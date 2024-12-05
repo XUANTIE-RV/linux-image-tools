@@ -243,7 +243,7 @@ do_copy_uboot (){
 #cp k230 image
 do_copy_k230(){
     mkdir -p archived/k230
-    cp -r ${IMAGE_k230}/* archived/k230
+    cp -r ${IMAGE_k230}/* archived/k230 && rm -rf archived/k230/post-image.sh
     if [ $? -ne 0 ]; then
         echo "failed"
         exit -1
