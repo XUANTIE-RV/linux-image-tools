@@ -12,7 +12,7 @@ compile_packages() {
 }
 
 #64 package compile
-compile_packages "m64lp64-s64lp64-u64lp64-k5.10xt-kcdebug-tcxt" "xuantie-common-pacakges" "xuantie-debug-tools" "perf"
+compile_packages "m64lp64-s64lp64-u64lp64-k5.10xt-kcdebug-tcxt" "xuantie-common-packages" "xuantie-debug-tools" "perf"
 compile_packages "c906fd" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"
 compile_packages "c910v2" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"
 compile_packages "c920v2" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3"  "iperf2"

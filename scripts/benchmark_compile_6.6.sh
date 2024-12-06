@@ -10,7 +10,7 @@ compile_packages() {
 }
 
 #64 package compile
-compile_packages "m64lp64-s64lp64-u64lp64-k6.6ry-kcdebug-tcxt" "xuantie-common-pacakges" "xuantie-debug-tools"
+compile_packages "m64lp64-s64lp64-u64lp64-k6.6ry-kcdebug-tcxt" "xuantie-common-packages" "xuantie-debug-tools"
 compile_packages "c906fdv" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3"  "iperf2"
 compile_packages "c907fdv" "aibench" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3"  "iperf2"
 compile_packages "c907fdvm" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"
@@ -27,7 +27,7 @@ compile_packages "c908" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" 
 compile_packages "c910v2" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"
 compile_packages "c907fd" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"
 #32 package compile
-compile_packages "m32ilp32-s32ilp32-u32ilp32-k6.6ry-kcdebug-tcxt" "xuantie-common-pacakges" "xuantie-debug-tools"
+compile_packages "m32ilp32-s32ilp32-u32ilp32-k6.6ry-kcdebug-tcxt" "xuantie-common-packages" "xuantie-debug-tools"
 compile_packages "c907fd-rv32" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"
 compile_packages "c907fdv-rv32" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"
 compile_packages "c907fdvm-rv32" "coremark" "dhrystone" "unixbench" "lmbench" "sysbench" "iperf3" "iperf2"

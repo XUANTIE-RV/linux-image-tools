@@ -34,6 +34,7 @@ cd xuantie-yocto/meta-k230/images/prebuit_20240828/
 
 1.  将linux-image-tools拷贝到编译完成的 xuantie-build/xuantie 文件夹下
 2.  运行脚本：
+    
     6.6：./targets_collect_6.6.sh v1.0.6
     
     5.10：./targets_collect_5.10.sh v1.0.6
